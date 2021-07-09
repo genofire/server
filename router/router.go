@@ -99,6 +99,7 @@ func Create(db *database.GormDatabase, vInfo *model.VersionInfo, conf *config.Co
 	g.GET("version", func(ctx *gin.Context) {
 		ctx.JSON(200, vInfo)
 	})
+	g.GET("/UP", unifiedPushHandler.Info)
 
 	appTokenAuth := g.Group("/")
 	{

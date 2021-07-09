@@ -12,7 +12,29 @@ type UnifiedPushAPI struct {
 	Notifier Notifier
 }
 
-// CreateMessage creates a message, authentication via application-token is required.
+// Info UnifiedPush Server Discovery
+// swagger:operation GET /UP
+//
+// Show Protocol Version of UnifiedPush Spec: SERV_1.0.0
+//
+// ---
+// produces: [application/json]
+// security: [appTokenHeader: [], appTokenQuery: []]
+// responses:
+//   200:
+//     description: Ok
+//     schema:
+//       $ref: "#/definitions/Message"
+func (a *UnifiedPushAPI) Info(ctx *gin.Context) {
+	ctx.JSON(200, gin.H{
+		"unifiedpush": gin.H{
+			"version": 1,
+		},
+	})
+
+}
+
+// CreateMessage Unified reates a message, authentication via application-token is required.
 // swagger:operation POST /UP message createMessage
 //
 // Create a message.
